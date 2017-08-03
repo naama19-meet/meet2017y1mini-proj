@@ -113,7 +113,7 @@ def make_food():
     food_stamp=food.stamp()
     food_stamps.append(food_stamp)
 
-    
+
 
 
     
@@ -124,12 +124,13 @@ def make_food():
 import turtle
 import random
 
+turtle.bgcolor("pink")
 turtle.tracer(1,0)
 
 SIZE_X=800
 SIZE_Y=500
 
-turtle.setup(SIZE_X, SIZE_Y)
+turtle.setup(SIZE_X+25, SIZE_Y+25)
 
 turtle.penup()
 
@@ -146,6 +147,19 @@ food_stamps=[]
 
 snake=turtle.clone()
 snake.shape("square")
+
+
+turtle.pensize(10)
+turtle.pencolor("red")
+turtle.penup()   
+turtle.goto(399,-250)
+turtle.pendown()
+turtle.goto(399,250)
+turtle.goto(-399,250)
+turtle.goto(-399,-250)
+turtle.goto(399, -250)
+turtle.penup()
+
 
 turtle.hideturtle()
 
@@ -209,5 +223,8 @@ for letter in food_pos:
     food_stamps.append(new_food)
 
 food.hideturtle()
+
+
+
 
     
