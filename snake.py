@@ -47,20 +47,21 @@ def move_snake():
     
     #If snake is on top of food item
     if snake.pos() in food_pos:
+        print('you eat the food!')     
         food_ind=food_pos.index(snake.pos())  #What does this do?
         food.clearstamp(food_stamps[food_ind]) #Remove eaten food
         #stamp
         food_pos.pop(food_ind) #Remove eaten food position
         food_stamps.pop(food_ind) #Remove eaten food stamp
         print("You have eaten the food!")
-
         make_food()
     
     #pop zeroth element in pos_list to get rid of last the last
     #piece of the tail
-    old_stamp = stamp_list.pop(0)
-    snake.clearstamp(old_stamp)
-    pos_list.pop(0)
+    else:
+        old_stamp = stamp_list.pop(0)
+        snake.clearstamp(old_stamp)
+        pos_list.pop(0)
 
     new_pos = snake.pos()
     new_x_pos = new_pos[0]
@@ -84,6 +85,11 @@ def move_snake():
         print('You hit the down edge! Game over!')
         quit()
 
+
+    if pos_list[-1] in pos_list[0:-1]:
+        print('you eat yourself')
+        quit()
+        
     turtle.ontimer(move_snake,TIME_STEP)
 
 
@@ -106,6 +112,7 @@ def make_food():
     food_pos.append(food_pos2)
     food_stamp=food.stamp()
     food_stamps.append(food_stamp)
+
     
 
 
@@ -127,7 +134,8 @@ turtle.setup(SIZE_X, SIZE_Y)
 turtle.penup()
 
 SQUARE_SIZE=20
-START_LENGTH=8
+
+START_LENGTH=1
 TIME_STEP=100
 
 pos_list=[]
@@ -202,5 +210,4 @@ for letter in food_pos:
 
 food.hideturtle()
 
-
-
+    
